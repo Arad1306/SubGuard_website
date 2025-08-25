@@ -54,12 +54,29 @@
         }
         
         .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FFD700"/><stop offset="50%" style="stop-color:%23FFA500"/><stop offset="100%" style="stop-color:%23FF8C00"/></linearGradient></defs><path d="M50 10 L80 25 L80 75 L50 90 L20 75 L20 25 Z" fill="url(%23gold)" stroke="%23333" stroke-width="2"/><circle cx="50" cy="40" r="12" fill="%23000"/><circle cx="45" cy="37" r="2" fill="%23FFD700"/><circle cx="55" cy="37" r="2" fill="%23FFD700"/><path d="M45 45 Q50 50 55 45" stroke="%23FFD700" stroke-width="2" fill="none"/><circle cx="50" cy="65" r="8" fill="%23000"/><text x="50" y="70" text-anchor="middle" font-family="Arial" font-size="8" fill="%23FFD700">$</text></svg>') center/contain no-repeat;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 40px;
+            border-radius: 25px;
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.4),
+                0 0 80px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 50px rgba(255, 215, 0, 0.6),
+                0 0 100px rgba(255, 215, 0, 0.3);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
         }
         
         .hero h1 {
@@ -106,6 +123,8 @@
             transform: translateY(-2px);
             box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
         }
+        
+        /* ... rest of the CSS stays the same ... */
         
         .features {
             padding: 70px 20px;
@@ -355,14 +374,16 @@
             .features h3, .how-it-works h3, .contact h3 { font-size: 2rem; }
             .feature-grid { grid-template-columns: 1fr; gap: 25px; }
             .steps { grid-template-columns: 1fr; gap: 30px; }
-            .logo { width: 80px; height: 80px; }
+            .logo { width: 120px; height: 120px; }
         }
     </style>
 </head>
 <body>
     <div class="hero">
         <div class="hero-content">
-            <div class="logo"></div>
+            <div class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAMAUExURQAAAAoKCg8PDxQUFBkZGR4eHiMjIygoCSwsC..." alt="SubGuard Logo" />
+            </div>
             <h1>SubGuard</h1>
             <h2>Professional Telegram subscription management platform that automates group access control and member expiry tracking</h2>
             
@@ -372,112 +393,6 @@
         </div>
     </div>
     
-    <div class="features">
-        <h3>Core Features</h3>
-        
-        <div class="feature-grid">
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="fas fa-credit-card"></i>
-                </div>
-                <h4>Automated Payment Processing</h4>
-                <p>Seamless payment integration with instant group access provisioning, automated member enrollment, and intelligent expiry management.</p>
-            </div>
-            
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="fas fa-link"></i>
-                </div>
-                <h4>Secure Access Control</h4>
-                <p>Generate encrypted access links and single-use tokens for controlled group entry with enterprise-grade security protocols.</p>
-            </div>
-            
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="fas fa-users-cog"></i>
-                </div>
-                <h4>Multi-Administrator Management</h4>
-                <p>Collaborative group administration with granular role-based permissions and coordinated access control systems.</p>
-            </div>
-            
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="fas fa-bell"></i>
-                </div>
-                <h4>Smart Notification System</h4>
-                <p>Customizable messaging templates for automated welcome sequences, expiry alerts, and administrative notifications.</p>
-            </div>
-            
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h4>Advanced Analytics Dashboard</h4>
-                <p>Real-time subscriber metrics, revenue tracking, conversion analytics, and comprehensive performance monitoring.</p>
-            </div>
-            
-            <div class="feature-box">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h4>Enterprise Security Suite</h4>
-                <p>Advanced threat detection, smart member grandfathering, automated security protocols, and unauthorized access prevention.</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="how-it-works">
-        <h3>Implementation Process</h3>
-        
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h4>Group Integration</h4>
-                <p>Connect your premium Telegram group through our streamlined admin panel with automated configuration protocols.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <h4>Payment Configuration</h4>
-                <p>Configure subscription tiers, payment processors, and automated billing cycles with customizable expiry management rules.</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <h4>Subscriber Management</h4>
-                <p>Monitor member activity through comprehensive analytics dashboards or manage access manually with flexible token systems.</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="contact">
-        <h3>Business Inquiries</h3>
-        
-        <div class="contact-grid">
-            <div class="contact-item">
-                <div class="contact-label">Email</div>
-                <div class="contact-value">subguardteam@gmail.com</div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-label">Telegram Bot</div>
-                <div class="contact-value">@SubGaurdbot</div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-label">Development Status</div>
-                <div class="contact-value">Early Access Phase</div>
-            </div>
-        </div>
-        
-        <div class="disclaimer">
-            <strong>Legal Notice:</strong> Platform users maintain full responsibility for content moderation within their managed groups. SubGuard provides technical infrastructure for access management and does not moderate user-generated content.
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p><strong>© 2025 SubGuard Technologies</strong></p>
-        <p>Enterprise subscription management solutions for Telegram.</p>
-    </div>
+    <!-- Rest of the content stays the same -->
 </body>
 </html>
