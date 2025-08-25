@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SubGuard – Telegram Subscription Manager That Automates Group Access & Expiry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
             color: #ffffff;
             background: #0a0a0a;
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
         
         .hero {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
             color: #ffffff;
             text-align: center;
-            padding: 140px 20px;
-            min-height: 95vh;
+            padding: 80px 20px 60px;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -39,69 +41,81 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
         
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
         
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FFD700"/><stop offset="50%" style="stop-color:%23FFA500"/><stop offset="100%" style="stop-color:%23FF8C00"/></linearGradient></defs><path d="M50 10 L80 25 L80 75 L50 90 L20 75 L20 25 Z" fill="url(%23gold)" stroke="%23333" stroke-width="2"/><circle cx="50" cy="40" r="12" fill="%23000"/><circle cx="45" cy="37" r="2" fill="%23FFD700"/><circle cx="55" cy="37" r="2" fill="%23FFD700"/><path d="M45 45 Q50 50 55 45" stroke="%23FFD700" stroke-width="2" fill="none"/><circle cx="50" cy="65" r="8" fill="%23000"/><text x="50" y="70" text-anchor="middle" font-family="Arial" font-size="8" fill="%23FFD700">$</text></svg>') center/contain no-repeat;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+        
         .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 30px;
+            font-size: 3.8rem;
+            margin-bottom: 20px;
             font-weight: 800;
             background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
         }
         
         .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 50px;
-            font-weight: 300;
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            font-weight: 500;
             color: #e8e8e8;
             line-height: 1.4;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.005em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .early-access {
             display: inline-block;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             color: #000;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-top: 30px;
+            margin-top: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
             transition: all 0.3s ease;
             text-decoration: none;
         }
         
         .early-access:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
         }
         
         .features {
-            padding: 120px 20px;
+            padding: 70px 20px;
             background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
             text-align: center;
         }
         
         .features h3 {
-            font-size: 3.5rem;
-            margin-bottom: 80px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -112,18 +126,18 @@
         
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 50px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
         .feature-box {
             background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-            padding: 50px 40px;
-            border-radius: 25px;
+            padding: 35px 30px;
+            border-radius: 16px;
             border: 1px solid #333;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             text-align: left;
@@ -135,57 +149,58 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, #FFD700, #FFA500);
         }
         
         .feature-box:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 215, 0, 0.5);
-            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.15);
+            transform: translateY(-8px);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
         }
         
         .feature-icon {
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 20px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
         }
         
         .feature-icon i {
-            font-size: 2rem;
+            font-size: 1.3rem;
             color: #000;
         }
         
         .feature-box h4 {
-            font-size: 1.6rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
             color: #FFD700;
             font-weight: 600;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.005em;
+            line-height: 1.3;
         }
         
         .feature-box p {
             color: #cccccc;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            font-weight: 300;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 400;
         }
         
         .how-it-works {
-            padding: 120px 20px;
+            padding: 70px 20px;
             background: #0a0a0a;
             text-align: center;
         }
         
         .how-it-works h3 {
-            font-size: 3.5rem;
-            margin-bottom: 80px;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -196,16 +211,16 @@
         
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 60px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
         .step {
             background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
-            padding: 50px 40px;
-            border-radius: 25px;
+            padding: 35px 30px;
+            border-radius: 16px;
             border: 1px solid #333;
             position: relative;
             transition: all 0.3s ease;
@@ -218,46 +233,46 @@
         
         .step-number {
             position: absolute;
-            top: -25px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, #FFD700, #FFA500);
             color: #000;
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.4rem;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            font-size: 1.1rem;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
         
         .step h4 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
             color: #FFD700;
             font-weight: 600;
         }
         
         .step p {
             color: #cccccc;
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         .contact {
             background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
             color: white;
             text-align: center;
-            padding: 100px 20px;
-            border-top: 4px solid #FFD700;
+            padding: 70px 20px;
+            border-top: 3px solid #FFD700;
         }
         
         .contact h3 {
-            font-size: 3rem;
-            margin-bottom: 50px;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -267,42 +282,48 @@
         
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            max-width: 800px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .contact-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
+            padding: 25px 20px;
+            border-radius: 12px;
             border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
         }
         
         .contact-label {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: #FFD700;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .contact-value {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #ffffff;
-            font-weight: 400;
+            font-weight: 500;
         }
         
         .disclaimer {
             background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
             border: 1px solid #444;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 50px auto 0;
-            max-width: 900px;
-            font-size: 1rem;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 40px auto 0;
+            max-width: 800px;
+            font-size: 0.9rem;
             color: #aaa;
             line-height: 1.6;
         }
@@ -313,15 +334,15 @@
         
         .footer {
             background: #050505;
-            padding: 50px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-top: 1px solid #222;
         }
         
         .footer p {
             color: #888;
-            margin: 10px 0;
-            font-size: 1rem;
+            margin: 8px 0;
+            font-size: 0.95rem;
         }
         
         .footer strong {
@@ -329,19 +350,21 @@
         }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .hero h2 { font-size: 1.5rem; }
-            .features h3, .how-it-works h3, .contact h3 { font-size: 2.5rem; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .features h3, .how-it-works h3, .contact h3 { font-size: 2rem; }
+            .feature-grid { grid-template-columns: 1fr; gap: 25px; }
+            .steps { grid-template-columns: 1fr; gap: 30px; }
+            .logo { width: 80px; height: 80px; }
         }
     </style>
 </head>
 <body>
     <div class="hero">
         <div class="hero-content">
+            <div class="logo"></div>
             <h1>SubGuard</h1>
-            <h2>Telegram Subscription Manager That Automates Group Access & Expiry</h2>
+            <h2>Professional Telegram subscription management platform that automates group access control and member expiry tracking</h2>
             
             <div class="early-access">
                 Early Access Coming Soon
@@ -357,78 +380,78 @@
                 <div class="feature-icon">
                     <i class="fas fa-credit-card"></i>
                 </div>
-                <h4>Auto Payments & Member Management</h4>
-                <p>Automated payment processing with instant group access. Handles member addition, expiry tracking, and automatic removal seamlessly.</p>
+                <h4>Automated Payment Processing</h4>
+                <p>Seamless payment integration with instant group access provisioning, automated member enrollment, and intelligent expiry management.</p>
             </div>
             
             <div class="feature-box">
                 <div class="feature-icon">
                     <i class="fas fa-link"></i>
                 </div>
-                <h4>Access Links & One-Time Tokens</h4>
-                <p>Generate secure access links and one-time tokens for controlled group entry. Perfect for paid content distribution.</p>
+                <h4>Secure Access Control</h4>
+                <p>Generate encrypted access links and single-use tokens for controlled group entry with enterprise-grade security protocols.</p>
             </div>
             
             <div class="feature-box">
                 <div class="feature-icon">
                     <i class="fas fa-users-cog"></i>
                 </div>
-                <h4>Multi-Admin Collaboration</h4>
-                <p>Multiple administrators can manage the same group with role-based permissions and coordinated access control.</p>
+                <h4>Multi-Administrator Management</h4>
+                <p>Collaborative group administration with granular role-based permissions and coordinated access control systems.</p>
             </div>
             
             <div class="feature-box">
                 <div class="feature-icon">
                     <i class="fas fa-bell"></i>
                 </div>
-                <h4>Custom Notifications & Templates</h4>
-                <p>Personalized messaging system with custom templates for welcome messages, expiry warnings, and admin notifications.</p>
+                <h4>Smart Notification System</h4>
+                <p>Customizable messaging templates for automated welcome sequences, expiry alerts, and administrative notifications.</p>
             </div>
             
             <div class="feature-box">
                 <div class="feature-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
-                <h4>Real-Time Monitoring & Analytics</h4>
-                <p>Comprehensive dashboard with subscriber tracking, revenue analytics, and real-time group activity monitoring.</p>
+                <h4>Advanced Analytics Dashboard</h4>
+                <p>Real-time subscriber metrics, revenue tracking, conversion analytics, and comprehensive performance monitoring.</p>
             </div>
             
             <div class="feature-box">
                 <div class="feature-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h4>Protect Against Unauthorized Access</h4>
-                <p>Advanced security features including smart grandfathering, auto-kick settings, and unauthorized user detection.</p>
+                <h4>Enterprise Security Suite</h4>
+                <p>Advanced threat detection, smart member grandfathering, automated security protocols, and unauthorized access prevention.</p>
             </div>
         </div>
     </div>
     
     <div class="how-it-works">
-        <h3>How It Works</h3>
+        <h3>Implementation Process</h3>
         
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
-                <h4>Add Your Group</h4>
-                <p>Connect your paid content Telegram group to SubGuard through the admin panel with just a few clicks.</p>
+                <h4>Group Integration</h4>
+                <p>Connect your premium Telegram group through our streamlined admin panel with automated configuration protocols.</p>
             </div>
             
             <div class="step">
                 <div class="step-number">2</div>
-                <h4>Set Up Payment & Expiry</h4>
-                <p>Configure your pricing tiers, payment methods, and subscription durations. Customize expiry rules and automation settings.</p>
+                <h4>Payment Configuration</h4>
+                <p>Configure subscription tiers, payment processors, and automated billing cycles with customizable expiry management rules.</p>
             </div>
             
             <div class="step">
                 <div class="step-number">3</div>
-                <h4>Track & Manage</h4>
-                <p>Monitor your subscribers in real-time using our comprehensive dashboard or manage access manually with our flexible token system.</p>
+                <h4>Subscriber Management</h4>
+                <p>Monitor member activity through comprehensive analytics dashboards or manage access manually with flexible token systems.</p>
             </div>
         </div>
     </div>
     
     <div class="contact">
-        <h3>Get in Touch</h3>
+        <h3>Business Inquiries</h3>
         
         <div class="contact-grid">
             <div class="contact-item">
@@ -442,19 +465,19 @@
             </div>
             
             <div class="contact-item">
-                <div class="contact-label">Platform Status</div>
-                <div class="contact-value">Early Access Development</div>
+                <div class="contact-label">Development Status</div>
+                <div class="contact-value">Early Access Phase</div>
             </div>
         </div>
         
         <div class="disclaimer">
-            <strong>Important:</strong> Users are responsible for content in their groups. SubGuard provides tools for access management but does not moderate group content.
+            <strong>Legal Notice:</strong> Platform users maintain full responsibility for content moderation within their managed groups. SubGuard provides technical infrastructure for access management and does not moderate user-generated content.
         </div>
     </div>
     
     <div class="footer">
-        <p><strong>© 2025 SubGuard</strong></p>
-        <p>Advanced subscription management for Telegram.</p>
+        <p><strong>© 2025 SubGuard Technologies</strong></p>
+        <p>Enterprise subscription management solutions for Telegram.</p>
     </div>
 </body>
 </html>
