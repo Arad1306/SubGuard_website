@@ -9,6 +9,7 @@
     <meta property="og:title" content="SubGuard – Automate Telegram Subscriptions">
     <meta property="og:description" content="Automated access, expiry, secure links, multi-admin, notifications, analytics, and audit logs for Telegram communities.">
     <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23FFD700'/%3E%3Cstop offset='1' stop-color='%23FFA500'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M32 4l22 8v16c0 12.7-8.9 24.7-22 28-13.1-3.3-22-15.3-22-28V12l22-8z'/%3E%3Ctext x='32' y='40' font-family='Inter,Arial' font-weight='700' font-size='22' text-anchor='middle' fill='%23000'%3ESG%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -24,6 +25,41 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
         }
+        
+        /* Simple top navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid #1f1f1f;
+            z-index: 10;
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: -0.02em;
+        }
+        .brand .dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+        .nav-links a {
+            color: #ccc; text-decoration: none; margin-left: 18px; font-weight: 500; font-size: 0.95rem;
+        }
+        .nav-links a:hover { color: #FFD700; }
         
         .hero {
             background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
@@ -68,6 +104,7 @@
                 0 0 80px rgba(255, 215, 0, 0.2);
             transition: all 0.3s ease;
             overflow: hidden;
+            border: 1px solid #343434;
         }
         
         .logo:hover {
@@ -83,6 +120,9 @@
             object-fit: cover;
             border-radius: 20px;
         }
+        .logo svg { width: 100%; height: 100%; display: none; }
+        .logo.fallback svg { display: block; }
+        .logo.fallback img { display: none; }
         
         .hero h1 {
             font-size: 3.8rem;
@@ -384,17 +424,37 @@
     </style>
 </head>
 <body>
+        <header class="nav">
+            <div class="nav-inner">
+                <div class="brand"><span class="dot"></span>SubGuard</div>
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it works</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </header>
     <div class="hero">
         <div class="hero-content">
             <div class="logo">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAMAUExURQAAAAoKCg8PDxQUFBkZGR4eHiMjIygoCSwsC..." alt="SubGuard logo: golden robot in a shield" />
+                                <!-- Try to load a local logo.png; if it fails, show the SVG fallback -->
+                                <img src="logo.png" alt="SubGuard logo" onerror="this.closest('.logo').classList.add('fallback');" />
+                                <svg viewBox="0 0 256 256" role="img" aria-label="SubGuard shield monogram">
+                                    <defs>
+                                        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                            <stop stop-color="#FFD700"/>
+                                            <stop offset="1" stop-color="#FFA500"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill="url(#g1)" d="M128 18l92 34v67c0 53-37 103-92 118-55-15-92-65-92-118V52l92-34z"/>
+                                    <circle cx="128" cy="86" r="34" fill="#000" opacity="0.18"/>
+                                    <text x="128" y="160" text-anchor="middle" font-size="88" font-weight="800" font-family="Inter, Arial" fill="#000">SG</text>
+                                </svg>
             </div>
             <h1>SubGuard</h1>
-            <h2>Professional Telegram subscription management platform that automates group access control and member expiry tracking</h2>
+                        <h2>Professional Telegram subscription management platform that automates group access and member expiry — simple, secure, and built for creators.</h2>
             
-            <div class="early-access">
-                Early Access Coming Soon
-            </div>
+                        <a class="early-access" href="mailto:hello@subguard.app?subject=SubGuard%20Early%20Access">Request Early Access</a>
         </div>
     </div>
 
@@ -480,10 +540,6 @@
                 <div class="contact-label">Telegram</div>
                 <div class="contact-value"><a href="https://t.me/subguard" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">t.me/subguard</a></div>
             </div>
-        </div>
-
-        <div class="disclaimer">
-            <strong>Founder note:</strong> SubGuard started as a summer project by a first‑year electrical engineering student who wanted a better way to monetize Telegram communities without busywork. The goal is a premium, secure, and simple tool with a clean black‑and‑gold brand.
         </div>
     </section>
 
