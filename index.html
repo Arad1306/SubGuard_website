@@ -96,13 +96,15 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
         }
+        .hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
+        .hero-copy { text-align: left; }
         
         .logo {
-            width: 150px;
-            height: 150px;
+            width: 280px;
+            height: 280px;
             margin: 0 auto 40px;
             border-radius: 25px;
             box-shadow: 
@@ -152,8 +154,8 @@
             line-height: 1.4;
             letter-spacing: -0.005em;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: 0;
+            margin-right: 0;
         }
         
         .early-access {
@@ -456,7 +458,10 @@
             .features h3, .how-it-works h3, .contact h3 { font-size: 2rem; }
             .feature-grid { grid-template-columns: 1fr; gap: 25px; }
             .steps { grid-template-columns: 1fr; gap: 30px; }
-            .logo { width: 120px; height: 120px; }
+            .logo { width: 180px; height: 180px; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-copy { text-align: center; }
+            .hero h2 { margin-left: auto; margin-right: auto; }
             .about-inner { grid-template-columns: 1fr; }
         }
     </style>
@@ -474,9 +479,11 @@
                 </nav>
             </div>
         </header>
-    <div class="hero">
-        <div class="hero-content">
-            <div class="logo">
+        <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-grid">
+                        <div>
+                            <div class="logo">
                                 <!-- Try to load a local logo.png; if it fails, show the SVG fallback -->
                                 <img src="logo.png" alt="SubGuard logo – golden robot shield" onerror="this.closest('.logo').classList.add('fallback');" />
                                 <svg viewBox="0 0 256 256" role="img" aria-label="SubGuard shield monogram">
@@ -490,13 +497,16 @@
                                     <circle cx="128" cy="86" r="34" fill="#000" opacity="0.18"/>
                                     <text x="128" y="160" text-anchor="middle" font-size="88" font-weight="800" font-family="Inter, Arial" fill="#000">SG</text>
                                 </svg>
-            </div>
-            <h1>SubGuard</h1>
-                        <h2>Professional Telegram subscription management platform that automates group access and member expiry — simple, secure, and built for creators.</h2>
-            
-                        <a class="early-access" href="mailto:subguardteam@gmail.com?subject=SubGuard%20Early%20Access">Request Early Access</a>
+                            </div>
+                        </div>
+                        <div class="hero-copy">
+                            <h1>SubGuard</h1>
+                            <h2>Professional Telegram subscription management platform that automates group access and member expiry — simple, secure, and built for creators.</h2>
+                            <a class="early-access" href="mailto:subguardteam@gmail.com?subject=SubGuard%20Early%20Access">Request Early Access</a>
+                        </div>
+                    </div>
+                </div>
         </div>
-    </div>
 
     <section class="features" id="features">
         <h3>What You Get</h3>
@@ -611,7 +621,7 @@
         <div class="contact-grid">
             <div class="contact-item">
                 <div class="contact-label">Status</div>
-                <div class="contact-value">Private testing • Payments optional (manual now) • Stripe integration coming</div>
+                <div class="contact-value">Early access coming soon.</div>
             </div>
             <div class="contact-item">
                 <div class="contact-label">Email</div>
