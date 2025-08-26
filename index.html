@@ -10,17 +10,22 @@
     <meta property="og:description" content="Automated access, expiry, secure links, multi-admin, notifications, analytics, and audit logs for Telegram communities.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SubGuard — Telegram Subscription Manager">
+    <meta name="twitter:description" content="Automated access, secure links, analytics, and audit logs for Telegram communities.">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23FFD700'/%3E%3Cstop offset='1' stop-color='%23FFA500'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M32 4l22 8v16c0 12.7-8.9 24.7-22 28-13.1-3.3-22-15.3-22-28V12l22-8z'/%3E%3Ctext x='32' y='40' font-family='Inter,Arial' font-weight='700' font-size='22' text-anchor='middle' fill='%23000'%3ESG%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        :root { --bg:#0a0a0a; --panel:#1a1a1a; --panel-2:#2a2a2a; --gold:#FFD700; --amber:#FFA500; --text:#fff; --muted:#ccc; }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.5;
             color: #ffffff;
-            background: #0a0a0a;
+            background: var(--bg);
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -174,7 +179,9 @@
         
         /* ... rest of the CSS stays the same ... */
         
-        .features {
+    section { scroll-margin-top: 90px; }
+
+    .features {
             padding: 70px 20px;
             background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
             text-align: center;
@@ -415,6 +422,33 @@
         .footer strong {
             color: #FFD700;
         }
+
+        /* About section */
+        .about {
+            padding: 70px 20px;
+            background: linear-gradient(180deg, #0c0c0c 0%, #151515 100%);
+        }
+        .about-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; }
+        .about h3 {
+            font-size: 2.2rem; margin-bottom: 16px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;
+        }
+        .about p { color: #d9d9d9; font-size: 1rem; line-height: 1.8; }
+        .about-list { margin-top: 16px; display: grid; gap: 10px; }
+        .about-item { display:flex; gap:10px; align-items:flex-start; color:#cfcfcf; }
+        .about-item i { color:#000; background: linear-gradient(135deg, #FFD700, #FFA500); width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; box-shadow:0 4px 14px rgba(255,215,0,0.25); }
+        .about-card { background: linear-gradient(135deg, #222, #171717); border:1px solid #333; border-radius:14px; padding:22px; color:#cfcfcf; }
+
+        /* FAQ */
+        .faq { padding: 70px 20px; background: #0a0a0a; }
+        .faq h3 { font-size: 2.2rem; margin-bottom: 24px; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; text-align:center; }
+        .faq .faq-inner { max-width: 900px; margin: 0 auto; }
+        .faq details { background: linear-gradient(135deg, #2a2a2a, #1f1f1f); border:1px solid #333; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; }
+        .faq details[open] { border-color: rgba(255,215,0,0.35); }
+        .faq summary { list-style: none; cursor: pointer; color:#fff; font-weight: 600; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq p { color:#cfcfcf; margin-top:10px; }
         
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.8rem; }
@@ -423,6 +457,7 @@
             .feature-grid { grid-template-columns: 1fr; gap: 25px; }
             .steps { grid-template-columns: 1fr; gap: 30px; }
             .logo { width: 120px; height: 120px; }
+            .about-inner { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -433,6 +468,8 @@
                 <nav class="nav-links">
                     <a href="#features">Features</a>
                     <a href="#how-it-works">How it works</a>
+                    <a href="#about">About</a>
+                    <a href="#faq">FAQ</a>
                     <a href="#contact">Contact</a>
                 </nav>
             </div>
@@ -502,6 +539,25 @@
         </div>
     </section>
 
+    <section class="about" id="about">
+        <div class="about-inner">
+            <div>
+                <h3>Built for Telegram creators</h3>
+                <p>SubGuard helps you monetize and manage your communities without manual busywork. Add your group, set simple rules, and share a secure link. We handle access, expiry, and the admin side so you can focus on content.</p>
+                <div class="about-list">
+                    <div class="about-item"><span><i class="fa-solid fa-wand-magic-sparkles"></i></span><p>Clean setup with sensible defaults. No complex dashboards needed to get started.</p></div>
+                    <div class="about-item"><span><i class="fa-solid fa-shield"></i></span><p>Security-first: one‑time links, auto‑kick for expired members, and audit history.</p></div>
+                    <div class="about-item"><span><i class="fa-solid fa-gauge-high"></i></span><p>Fast and lightweight. Works great on mobile where your members live.</p></div>
+                </div>
+            </div>
+            <div class="about-card">
+                <strong style="color:#FFD700;">What’s the status?</strong>
+                <p style="margin-top:8px;">Private testing now. Payments are optional; manual workflows are always available. Stripe integration is coming.</p>
+                <p style="margin-top:10px;">Want early access? Email <a href="mailto:subguardteam@gmail.com" style="color:#fff;">subguardteam@gmail.com</a>.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="how-it-works" id="how-it-works">
         <h3>How It Works</h3>
         <div class="steps">
@@ -528,6 +584,28 @@
         </div>
     </section>
 
+    <section class="faq" id="faq" aria-label="Frequently asked questions">
+        <div class="faq-inner">
+            <h3>FAQ</h3>
+            <details>
+                <summary>Do I need payments to use SubGuard?</summary>
+                <p>No. You can run manual onboarding and expiries. Payments are optional and can be enabled later.</p>
+            </details>
+            <details>
+                <summary>How are members added?</summary>
+                <p>Share a secure one‑time link. SubGuard verifies the join and tracks their access window.</p>
+            </details>
+            <details>
+                <summary>Can multiple admins manage the same group?</summary>
+                <p>Yes. Invite admins with role‑based permissions so you can split responsibilities safely.</p>
+            </details>
+            <details>
+                <summary>What analytics do I get?</summary>
+                <p>Active members, churn, renewals, and group activity trends in a simple dashboard.</p>
+            </details>
+        </div>
+    </section>
+
     <section class="contact" id="contact">
         <h3>Early Access & Contact</h3>
         <div class="contact-grid">
@@ -549,6 +627,10 @@
     <footer class="footer">
         <p><strong>SubGuard</strong> — Telegram Subscription Manager</p>
         <p>Premium • Secure • Easy to use</p>
+        <p style="margin-top:8px;">
+            <a href="./privacy.html" style="color:#aaa; text-decoration:none; margin-right:14px;">Privacy</a>
+            <a href="./terms.html" style="color:#aaa; text-decoration:none;">Terms</a>
+        </p>
         <p style="margin-top:10px;color:#666;font-size:0.85rem;">© <span id="year"></span> SubGuard. All rights reserved.</p>
     </footer>
 
