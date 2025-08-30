@@ -1,651 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SubGuard – Telegram Subscription Manager That Automates Group Access & Expiry</title>
-	<meta name="description" content="SubGuard is a premium, black-and-gold themed Telegram subscription manager that automates group access, expiry, and admin workflows with secure links, analytics, and audit logs.">
-	<meta name="theme-color" content="#0a0a0a">
-	<meta property="og:title" content="SubGuard – Automate Telegram Subscriptions">
-	<meta property="og:description" content="Automated access, expiry, secure links, multi-admin, notifications, analytics, and audit logs for Telegram communities.">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="logo.png">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="SubGuard — Telegram Subscription Manager">
-	<meta name="twitter:description" content="Automated access, secure links, analytics, and audit logs for Telegram communities.">
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23FFD700'/%3E%3Cstop offset='1' stop-color='%23FFA500'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M32 4l22 8v16c0 12.7-8.9 24.7-22 28-13.1-3.3-22-15.3-22-28V12l22-8z'/%3E%3Ctext x='32' y='40' font-family='Inter,Arial' font-weight='700' font-size='22' text-anchor='middle' fill='%23000'%3ESG%3C/text%3E%3C/svg%3E">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-	<style>
-		* { margin: 0; padding: 0; box-sizing: border-box; }
-		html { scroll-behavior: smooth; }
-		:root { --bg:#0a0a0a; --panel:#1a1a1a; --panel-2:#2a2a2a; --gold:#FFD700; --amber:#FFA500; --text:#fff; --muted:#ccc; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubGuard – Professional Team Communication Manager</title>
+    <meta name="description" content="Automate team access for private Telegram groups. Save hours with secure invites, expiries, role‑based permissions, and reliable admin tools.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="SubGuard – Team Communication Manager for Telegram">
+    <meta property="og:description" content="Automated access control, secure invites, role‑based permissions, and audit history for your private Telegram groups.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SubGuard – Team Communication Manager">
+    <meta name="twitter:description" content="Automated access control, secure invites, role‑based permissions, and audit history for Telegram groups.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23FFD700'/%3E%3Cstop offset='1' stop-color='%23FFA500'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M32 4l22 8v16c0 12.7-8.9 24.7-22 28-13.1-3.3-22-15.3-22-28V12l22-8z'/%3E%3Ctext x='32' y='40' font-family='Inter,Arial' font-weight='700' font-size='22' text-anchor='middle' fill='%23000'%3ESG%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        :root { --bg:#0a0a0a; --panel:#1a1a1a; --panel-2:#2a2a2a; --gold:#FFD700; --amber:#FFA500; --text:#fff; --muted:#ccc; }
         
-		body {
-			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-			line-height: 1.5;
-			color: #ffffff;
-			background: var(--bg);
-			font-weight: 400;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			text-rendering: optimizeLegibility;
-		}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #ffffff;
+            background: var(--bg);
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
         
-		/* Simple top navigation */
-		.nav {
-			position: sticky;
-			top: 0;
-			background: rgba(10,10,10,0.85);
-			backdrop-filter: blur(6px);
-			border-bottom: 1px solid #1f1f1f;
-			z-index: 10;
-		}
-		.nav-inner {
-			max-width: 1100px;
-			margin: 0 auto;
-			padding: 14px 20px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-		.brand {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			font-weight: 700;
-			color: #FFD700;
-			letter-spacing: -0.02em;
-		}
-		.brand .dot {
-			width: 10px; height: 10px; border-radius: 50%;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-		}
-		.nav-links a {
-			color: #ccc; text-decoration: none; margin-left: 18px; font-weight: 500; font-size: 0.95rem;
-		}
-		.nav-links a:hover { color: #FFD700; }
+        /* Simple top navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid #1f1f1f;
+            z-index: 10;
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: -0.02em;
+        }
+        .brand .dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+        }
+        .nav-links a {
+            color: #ccc; text-decoration: none; margin-left: 18px; font-weight: 500; font-size: 0.95rem;
+        }
+        .nav-links a:hover { color: #FFD700; }
         
-		.hero {
-			background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-			color: #ffffff;
-			text-align: center;
-			padding: 80px 20px 60px;
-			min-height: 85vh;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			position: relative;
-			overflow: hidden;
-		}
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 80px 20px 60px;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
         
-		.hero::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: 
-				radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
-				radial-gradient(circle at 70% 70%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
-			pointer-events: none;
-		}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
         
-		.hero-content {
-			position: relative;
-			z-index: 2;
-			max-width: 1100px;
-			margin: 0 auto;
-		}
-		.hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
-		.hero-copy { text-align: left; }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .hero-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center; }
+        .hero-copy { text-align: left; }
         
-		.logo {
-			width: 280px;
-			height: 280px;
-			margin: 0 auto 40px;
-			border-radius: 25px;
-			box-shadow: 
-				0 0 40px rgba(255, 215, 0, 0.4),
-				0 0 80px rgba(255, 215, 0, 0.2);
-			transition: all 0.3s ease;
-			overflow: hidden;
-			border: 1px solid #343434;
-		}
+        .logo {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 40px;
+            border-radius: 25px;
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.4),
+                0 0 80px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid #343434;
+        }
         
-		.logo:hover {
-			transform: scale(1.05);
-			box-shadow: 
-				0 0 50px rgba(255, 215, 0, 0.6),
-				0 0 100px rgba(255, 215, 0, 0.3);
-		}
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 50px rgba(255, 215, 0, 0.6),
+                0 0 100px rgba(255, 215, 0, 0.3);
+        }
         
-		.logo img {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			border-radius: 20px;
-			background: radial-gradient(80% 80% at 50% 50%, rgba(255,215,0,0.15), rgba(0,0,0,0) 60%);
-			padding: 10px;
-		}
-		.logo svg { width: 100%; height: 100%; display: none; }
-		.logo.fallback svg { display: block; }
-		.logo.fallback img { display: none; }
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+            background: radial-gradient(80% 80% at 50% 50%, rgba(255,215,0,0.15), rgba(0,0,0,0) 60%);
+            padding: 10px;
+        }
+        .logo svg { width: 100%; height: 100%; display: none; }
+        .logo.fallback svg { display: block; }
+        .logo.fallback img { display: none; }
         
-		.hero h1 {
-			font-size: 3.8rem;
-			margin-bottom: 20px;
-			font-weight: 800;
-			background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-			letter-spacing: -0.03em;
-			line-height: 1.1;
-		}
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
         
-		.hero h2 {
-			font-size: 1.4rem;
-			margin-bottom: 35px;
-			font-weight: 500;
-			color: #e8e8e8;
-			line-height: 1.4;
-			letter-spacing: -0.005em;
-			max-width: 700px;
-			margin-left: 0;
-			margin-right: 0;
-		}
+        .hero h2 {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            font-weight: 500;
+            color: #e8e8e8;
+            line-height: 1.4;
+            letter-spacing: -0.005em;
+            max-width: 700px;
+            margin-left: 0;
+            margin-right: 0;
+        }
         
-		.early-access {
-			display: inline-block;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			color: #000;
-			padding: 14px 32px;
-			border-radius: 8px;
-			font-size: 0.95rem;
-			font-weight: 600;
-			margin-top: 20px;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-			box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-			transition: all 0.3s ease;
-			text-decoration: none;
-		}
+        .early-access {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
         
-		.early-access:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
-		}
+        .early-access:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
+        }
         
-	section { scroll-margin-top: 90px; }
+        /* ... rest of the CSS stays the same ... */
+        
+    section { scroll-margin-top: 90px; }
 
-	.features {
-			padding: 70px 20px;
-			background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
-			text-align: center;
-		}
+    .features {
+            padding: 70px 20px;
+            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+            text-align: center;
+        }
         
-		.features h3 {
-			font-size: 2.5rem;
-			margin-bottom: 50px;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-			font-weight: 700;
-			letter-spacing: -0.02em;
-		}
+        .features h3 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
         
-		.feature-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-			gap: 30px;
-			max-width: 1200px;
-			margin: 0 auto;
-		}
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         
-		.feature-box {
-			background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-			padding: 35px 30px;
-			border-radius: 16px;
-			border: 1px solid #333;
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
-			text-align: left;
-		}
+        .feature-box {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+            padding: 35px 30px;
+            border-radius: 16px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
         
-		.feature-box::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 3px;
-			background: linear-gradient(90deg, #FFD700, #FFA500);
-		}
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+        }
         
-		.feature-box:hover {
-			transform: translateY(-8px);
-			border-color: rgba(255, 215, 0, 0.4);
-			box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
-		}
+        .feature-box:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
+        }
         
-		.feature-icon {
-			width: 50px;
-			height: 50px;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			border-radius: 12px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-bottom: 20px;
-			box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
-		}
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+        }
         
-		.feature-icon i {
-			font-size: 1.3rem;
-			color: #000;
-		}
+        .feature-icon i {
+            font-size: 1.3rem;
+            color: #000;
+        }
         
-		.feature-box h4 {
-			font-size: 1.3rem;
-			margin-bottom: 12px;
-			color: #FFD700;
-			font-weight: 600;
-			letter-spacing: -0.005em;
-			line-height: 1.3;
-		}
+        .feature-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #FFD700;
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            line-height: 1.3;
+        }
         
-		.feature-box p {
-			color: #cccccc;
-			font-size: 0.95rem;
-			line-height: 1.6;
-			font-weight: 400;
-		}
+        .feature-box p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
         
-		.how-it-works {
-			padding: 70px 20px;
-			background: #0a0a0a;
-			text-align: center;
-		}
+        .how-it-works {
+            padding: 70px 20px;
+            background: #0a0a0a;
+            text-align: center;
+        }
         
-		.how-it-works h3 {
-			font-size: 2.5rem;
-			margin-bottom: 50px;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-			font-weight: 700;
-			letter-spacing: -0.02em;
-		}
+        .how-it-works h3 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
         
-		.steps {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-			gap: 40px;
-			max-width: 1000px;
-			margin: 0 auto;
-		}
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
         
-		.step {
-			background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
-			padding: 35px 30px;
-			border-radius: 16px;
-			border: 1px solid #333;
-			position: relative;
-			transition: all 0.3s ease;
-		}
+        .step {
+            background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+            padding: 35px 30px;
+            border-radius: 16px;
+            border: 1px solid #333;
+            position: relative;
+            transition: all 0.3s ease;
+        }
         
-		.step:hover {
-			transform: translateY(-5px);
-			border-color: rgba(255, 215, 0, 0.3);
-		}
+        .step:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
         
-		.step-number {
-			position: absolute;
-			top: -20px;
-			left: 50%;
-			transform: translateX(-50%);
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			color: #000;
-			width: 45px;
-			height: 45px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-weight: bold;
-			font-size: 1.1rem;
-			box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-		}
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
         
-		.step h4 {
-			font-size: 1.2rem;
-			margin-bottom: 12px;
-			color: #FFD700;
-			font-weight: 600;
-		}
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: #FFD700;
+            font-weight: 600;
+        }
         
-		.step p {
-			color: #cccccc;
-			font-size: 0.95rem;
-			line-height: 1.6;
-		}
+        .step p {
+            color: #cccccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
         
-		.contact {
-			background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
-			color: white;
-			text-align: center;
-			padding: 70px 20px;
-			border-top: 3px solid #FFD700;
-		}
+        .contact {
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+            border-top: 3px solid #FFD700;
+        }
         
-		.contact h3 {
-			font-size: 2.2rem;
-			margin-bottom: 40px;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-			font-weight: 700;
-		}
+        .contact h3 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
         
-		.contact-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-			gap: 25px;
-			max-width: 700px;
-			margin: 0 auto;
-		}
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
         
-		.contact-item {
-			background: rgba(255, 255, 255, 0.05);
-			padding: 25px 20px;
-			border-radius: 12px;
-			border: 1px solid #333;
-			transition: all 0.3s ease;
-		}
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
         
-		.contact-item:hover {
-			border-color: rgba(255, 215, 0, 0.3);
-			transform: translateY(-3px);
-		}
+        .contact-item:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
+        }
         
-		.contact-label {
-			font-size: 0.85rem;
-			color: #FFD700;
-			font-weight: 600;
-			margin-bottom: 8px;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-		}
+        .contact-label {
+            font-size: 0.85rem;
+            color: #FFD700;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
-		.contact-value {
-			font-size: 1rem;
-			color: #ffffff;
-			font-weight: 500;
-		}
+        .contact-value {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
         
-		.disclaimer {
-			background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
-			border: 1px solid #444;
-			border-radius: 12px;
-			padding: 25px;
-			margin: 40px auto 0;
-			max-width: 800px;
-			font-size: 0.9rem;
-			color: #aaa;
-			line-height: 1.6;
-		}
+        .disclaimer {
+            background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 40px auto 0;
+            max-width: 800px;
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
         
-		.disclaimer strong {
-			color: #FFD700;
-		}
+        .disclaimer strong {
+            color: #FFD700;
+        }
         
-		.footer {
-			background: #050505;
-			padding: 40px 20px;
-			text-align: center;
-			border-top: 1px solid #222;
-		}
+        .footer {
+            background: #050505;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
         
-		.footer p {
-			color: #888;
-			margin: 8px 0;
-			font-size: 0.95rem;
-		}
+        .footer p {
+            color: #888;
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
         
-		.footer strong {
-			color: #FFD700;
-		}
+        .footer strong {
+            color: #FFD700;
+        }
 
-		/* About section */
-		.about {
-			padding: 70px 20px;
-			background: linear-gradient(180deg, #0c0c0c 0%, #151515 100%);
-		}
-		.about-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; }
-		.about h3 {
-			font-size: 2.2rem; margin-bottom: 16px;
-			background: linear-gradient(135deg, #FFD700, #FFA500);
-			-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;
-		}
-		.about p { color: #d9d9d9; font-size: 1rem; line-height: 1.8; }
-		.about-list { margin-top: 16px; display: grid; gap: 10px; }
-		.about-item { display:flex; gap:10px; align-items:flex-start; color:#cfcfcf; }
-		.about-item i { color:#000; background: linear-gradient(135deg, #FFD700, #FFA500); width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; box-shadow:0 4px 14px rgba(255,215,0,0.25); }
-		.about-card { background: linear-gradient(135deg, #222, #171717); border:1px solid #333; border-radius:14px; padding:22px; color:#cfcfcf; }
+        /* About section */
+        .about {
+            padding: 70px 20px;
+            background: linear-gradient(180deg, #0c0c0c 0%, #151515 100%);
+        }
+        .about-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; }
+        .about h3 {
+            font-size: 2.2rem; margin-bottom: 16px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;
+        }
+        .about p { color: #d9d9d9; font-size: 1rem; line-height: 1.8; }
+        .about-list { margin-top: 16px; display: grid; gap: 10px; }
+        .about-item { display:flex; gap:10px; align-items:flex-start; color:#cfcfcf; }
+        .about-item i { color:#000; background: linear-gradient(135deg, #FFD700, #FFA500); width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; box-shadow:0 4px 14px rgba(255,215,0,0.25); }
+        .about-card { background: linear-gradient(135deg, #222, #171717); border:1px solid #333; border-radius:14px; padding:22px; color:#cfcfcf; }
 
-		/* FAQ */
-		.faq { padding: 70px 20px; background: #0a0a0a; }
-		.faq h3 { font-size: 2.2rem; margin-bottom: 24px; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; text-align:center; }
-		.faq .faq-inner { max-width: 900px; margin: 0 auto; }
-		.faq details { background: linear-gradient(135deg, #2a2a2a, #1f1f1f); border:1px solid #333; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; }
-		.faq details[open] { border-color: rgba(255,215,0,0.35); }
-		.faq summary { list-style: none; cursor: pointer; color:#fff; font-weight: 600; }
-		.faq summary::-webkit-details-marker { display: none; }
-		.faq p { color:#cfcfcf; margin-top:10px; }
+        /* FAQ */
+        .faq { padding: 70px 20px; background: #0a0a0a; }
+        .faq h3 { font-size: 2.2rem; margin-bottom: 24px; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; text-align:center; }
+        .faq .faq-inner { max-width: 900px; margin: 0 auto; }
+        .faq details { background: linear-gradient(135deg, #2a2a2a, #1f1f1f); border:1px solid #333; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; }
+        .faq details[open] { border-color: rgba(255,215,0,0.35); }
+        .faq summary { list-style: none; cursor: pointer; color:#fff; font-weight: 600; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq p { color:#cfcfcf; margin-top:10px; }
         
-		@media (max-width: 768px) {
-			.hero h1 { font-size: 2.8rem; }
-			.hero h2 { font-size: 1.2rem; }
-			.features h3, .how-it-works h3, .contact h3 { font-size: 2rem; }
-			.feature-grid { grid-template-columns: 1fr; gap: 25px; }
-			.steps { grid-template-columns: 1fr; gap: 30px; }
-			.logo { width: 180px; height: 180px; }
-			.hero-grid { grid-template-columns: 1fr; }
-			.hero-copy { text-align: center; }
-			.hero h2 { margin-left: auto; margin-right: auto; }
-			.about-inner { grid-template-columns: 1fr; }
-		}
-	</style>
-	</head>
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .features h3, .how-it-works h3, .contact h3 { font-size: 2rem; }
+            .feature-grid { grid-template-columns: 1fr; gap: 25px; }
+            .steps { grid-template-columns: 1fr; gap: 30px; }
+            .logo { width: 180px; height: 180px; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero-copy { text-align: center; }
+            .hero h2 { margin-left: auto; margin-right: auto; }
+            .about-inner { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
 <body>
-		<header class="nav">
-			<div class="nav-inner">
-				<div class="brand"><span class="dot"></span>SubGuard</div>
-				<nav class="nav-links">
-					<a href="#features">Features</a>
-					<a href="#how-it-works">How it works</a>
-					<a href="#about">About</a>
-					<a href="#faq">FAQ</a>
-					<a href="#contact">Contact</a>
-				</nav>
-			</div>
-		</header>
-	<div class="hero">
-		<div class="hero-content">
-		  <div class="hero-grid">
-			<div>
-			  <div class="logo">
-				<!-- Try to load a local logo.png; if it fails, show the SVG fallback -->
-				<img src="logo.png" alt="SubGuard logo – golden robot shield" onerror="this.closest('.logo').classList.add('fallback');" />
-				<svg viewBox="0 0 256 256" role="img" aria-label="SubGuard shield monogram">
-				  <defs>
-					<linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-					  <stop stop-color="#FFD700"/>
-					  <stop offset="1" stop-color="#FFA500"/>
-					</linearGradient>
-				  </defs>
-				  <path fill="url(#g1)" d="M128 18l92 34v67c0 53-37 103-92 118-55-15-92-65-92-118V52l92-34z"/>
-				  <circle cx="128" cy="86" r="34" fill="#000" opacity="0.18"/>
-				  <text x="128" y="160" text-anchor="middle" font-size="88" font-weight="800" font-family="Inter, Arial" fill="#000">SG</text>
-				</svg>
-			  </div>
-			</div>
-			<div class="hero-copy">
-			  <h1>SubGuard — Secure subscription management for Telegram groups</h1>
-			  <h2>Manage access, expiries, and invites with one‑time links and clear controls.</h2>
-			  <a class="early-access" href="mailto:subguardteam@gmail.com?subject=SubGuard%20Contact">Talk to us</a>
-			</div>
-		  </div>
-		</div>
-	</div>
+        <header class="nav">
+            <div class="nav-inner">
+                <div class="brand"><span class="dot"></span>SubGuard</div>
+                <nav class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How it works</a>
+                    <a href="#about">About</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-grid">
+                        <div>
+                            <div class="logo">
+                                <!-- Try to load a local logo.png; if it fails, show the SVG fallback -->
+                                <img src="logo.png" alt="SubGuard logo – golden robot shield" onerror="this.closest('.logo').classList.add('fallback');" />
+                                <svg viewBox="0 0 256 256" role="img" aria-label="SubGuard shield monogram">
+                                    <defs>
+                                        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                            <stop stop-color="#FFD700"/>
+                                            <stop offset="1" stop-color="#FFA500"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill="url(#g1)" d="M128 18l92 34v67c0 53-37 103-92 118-55-15-92-65-92-118V52l92-34z"/>
+                                    <circle cx="128" cy="86" r="34" fill="#000" opacity="0.18"/>
+                                    <text x="128" y="160" text-anchor="middle" font-size="88" font-weight="800" font-family="Inter, Arial" fill="#000">SG</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="hero-copy">
+                            <h1>SubGuard Professional team communication manager</h1>
+                            <h2>Automate your team’s access and save hours of manual work.</h2>
+                            <a class="early-access" href="https://t.me/subguardbot" target="_blank" rel="noopener">Start free trial</a>
+                            <a class="early-access" style="margin-left:12px;" href="mailto:subguardteam@gmail.com?subject=SubGuard%20Demo%20Request">Request demo</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
-	<section class="features" id="features">
-		<h3>What You Get</h3>
-		<div class="feature-grid">
-			<div class="feature-box">
-				<div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
-				<h4>Automated Access & Expiry</h4>
-				<p>Connect payments when you're ready and SubGuard will grant and revoke access automatically based on subscription status.</p>
-			</div>
+    <section class="features" id="features">
+    <h3>Key Features</h3>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h4>Automated access control</h4>
+                <p>Configure rules once—SubGuard grants and revokes access automatically, on schedule.</p>
+            </div>
 
-			<div class="feature-box">
-				<div class="feature-icon"><i class="fa-solid fa-link"></i></div>
-				<h4>Secure Access Links</h4>
-				<p>Generate one‑time, single‑use links for new members. Smart safeguards prevent link sharing and unauthorized joins.</p>
-			</div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-link"></i></div>
+                <h4>Secure invite links</h4>
+                <p>One‑time, single‑use invites with smart safeguards to prevent sharing and unauthorized joins.</p>
+            </div>
 
-			<div class="feature-box">
-				<div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
-				<h4>Multi‑Admin Collaboration</h4>
-				<p>Invite teammates with role‑based permissions to manage your Telegram communities without exposing sensitive controls.</p>
-			</div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
+                <h4>Role‑based permissions</h4>
+                <p>Collaborate safely. Invite teammates with the right level of control for each group.</p>
+            </div>
 
-			<div class="feature-box">
-				<div class="feature-icon"><i class="fa-solid fa-message"></i></div>
-				<h4>Custom Notifications</h4>
-				<p>Personalize welcome messages, expiry warnings, renewal nudges, and admin alerts for a polished member experience.</p>
-			</div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-message"></i></div>
+                <h4>Custom notifications</h4>
+                <p>Personalize welcome messages, expiry warnings, reminders, and admin alerts for a polished experience.</p>
+            </div>
 
-			<div class="feature-box">
-				<div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
-				<h4>Analytics (coming soon)</h4>
-				<p>Insights and trends are in development to help you understand your community.</p>
-			</div>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h4>Analytics & reporting (coming soon)</h4>
+                <p>Reporting and trends to understand your community performance.</p>
+            </div>
 
-			<div class="feature-box">
-				<div class="feature-icon"><i class="fa-solid fa-shield"></i></div>
-				<h4>Security & Audit Logs</h4>
-				<p>Auto‑kick for expired users, grandfathering for existing members, and detailed audit trails to keep your space secure.</p>
-			</div>
-		</div>
-	</section>
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fa-solid fa-shield"></i></div>
+                <h4>Security & reliability</h4>
+                <p>End‑to‑end access monitoring, audit history, and real‑time safeguards against unauthorized access.</p>
+            </div>
+        </div>
+    </section>
 
-	<section class="about" id="about">
-		<div class="about-inner">
-			<div>
-				<h3>Built for Telegram creators</h3>
-				<p>SubGuard helps you manage and monetize your communities without manual busywork. Add your group, set simple rules, and share a secure link. The bot handles access, expiries, and admin tasks so you can focus on content.</p>
-				<div class="about-list">
-					<div class="about-item"><span><i class="fa-solid fa-wand-magic-sparkles"></i></span><p>Clean setup with sensible defaults. No complex dashboards needed to get started.</p></div>
-					<div class="about-item"><span><i class="fa-solid fa-shield"></i></span><p>Security-first: one‑time links, auto‑kick for expired members, and audit history.</p></div>
-					<div class="about-item"><span><i class="fa-solid fa-gauge-high"></i></span><p>Fast and lightweight.</p></div>
-				</div>
-			</div>
-			<div class="about-card">
-				<strong style="color:#FFD700;">What’s the status?</strong>
-				<p style="margin-top:8px;">Public beta opening soon. You can use SubGuard without payments; when enabled, Stripe processes cards.</p>
-				<p style="margin-top:10px;">Questions? Email <a href="mailto:subguardteam@gmail.com" style="color:#fff;">subguardteam@gmail.com</a>.</p>
-			</div>
-		</div>
-	</section>
+    <section class="about" id="about">
+        <div class="about-inner">
+            <div>
+                <h3>Built for teams and organizations</h3>
+                <p>SubGuard helps organizations manage private groups and channels with ease. Add your group, set simple rules, and share a secure link. The bot handles access, expiries, and admin tasks so your team can focus on work.</p>
+                <div class="about-list">
+                    <div class="about-item"><span><i class="fa-solid fa-wand-magic-sparkles"></i></span><p>Clean setup with sensible defaults. No complex dashboards needed to get started.</p></div>
+                    <div class="about-item"><span><i class="fa-solid fa-shield"></i></span><p>Security-first: one‑time links, auto‑kick for expired members, and audit history.</p></div>
+                    <div class="about-item"><span><i class="fa-solid fa-gauge-high"></i></span><p>Fast and lightweight. Works great on mobile where your members live.</p></div>
+                </div>
+            </div>
+            <div class="about-card">
+                <strong style="color:#FFD700;">Who uses SubGuard?</strong>
+                <ul style="margin-top:10px; padding-left:18px; color:#cfcfcf; line-height:1.7;">
+                    <li>Corporate teams</li>
+                    <li>Educational programs</li>
+                    <li>Professional communities</li>
+                    <li>Training and development groups</li>
+                </ul>
+                <p style="margin-top:10px;">Questions? Email <a href="mailto:subguardteam@gmail.com" style="color:#fff;">subguardteam@gmail.com</a>.</p>
+            </div>
+        </div>
+    </section>
 
-	<section class="how-it-works" id="how-it-works">
-		<h3>How It Works</h3>
-		<div class="steps">
-			<div class="step">
-				<div class="step-number">1</div>
-				<h4>Add Your Telegram Group</h4>
-				<p>Connect your group to SubGuard via the admin panel. Choose your visibility and basic rules.</p>
-			</div>
-			<div class="step">
-				<div class="step-number">2</div>
-				<h4>Set Up Rules</h4>
-				<p>Define subscription durations, expiry behavior, and messaging templates. Manual access works today; Stripe automation can be enabled when you’re ready.</p>
-			</div>
-			<div class="step">
-				<div class="step-number">3</div>
-				<h4>Share Access Links</h4>
-				<p>Share a secure one‑time join link.</p>
-			</div>
-			<div class="step">
-				<div class="step-number">4</div>
-				<h4>Manage & Grow</h4>
-				<p>Handle members and collaborate with admins from the dashboard.</p>
-			</div>
-		</div>
-	</section>
+    <section class="how-it-works" id="how-it-works">
+    <h3>How it works</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Set up your groups</h4>
+                <p>Connect SubGuard to your private Telegram groups and channels.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Automate access</h4>
+                <p>Configure roles, expiries, and notifications. SubGuard enforces your rules consistently.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Share secure invites</h4>
+                <p>Send one‑time access links; optional join‑lock ensures only valid invites work.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h4>Save time</h4>
+                <p>SubGuard handles onboarding, removals, and reporting so your team can focus on work.</p>
+            </div>
+        </div>
+    </section>
 
-	<section class="faq" id="faq" aria-label="Frequently asked questions">
-		<div class="faq-inner">
-			<h3>FAQ</h3>
-			<details>
-				<summary>Do I need payments to use SubGuard?</summary>
-				<p>No. You can run manual onboarding and expiries. Payments are optional and can be enabled later.</p>
-			</details>
-			<details>
-				<summary>How are members added?</summary>
-				<p>Share a secure one‑time link. SubGuard verifies the join and tracks their access window.</p>
-			</details>
-			<details>
-				<summary>Can multiple admins manage the same group?</summary>
-				<p>Yes. Invite admins with role‑based permissions so you can split responsibilities safely.</p>
-			</details>
-			<details>
-				<summary>What analytics do I get?</summary>
-				<p>Active members, churn, renewals, and group activity trends in a simple dashboard.</p>
-			</details>
-		</div>
-	</section>
+    <section class="faq" id="faq" aria-label="Frequently asked questions">
+        <div class="faq-inner">
+            <h3>FAQ</h3>
+            <details>
+                <summary>What platforms do you support?</summary>
+                <p>SubGuard is built for private Telegram groups and channels.</p>
+            </details>
+            <details>
+                <summary>How are members added?</summary>
+                <p>Share a secure one‑time invite link. SubGuard verifies joins and tracks access windows.</p>
+            </details>
+            <details>
+                <summary>Can multiple admins manage the same group?</summary>
+                <p>Yes. Use role‑based permissions to collaborate safely with your team.</p>
+            </details>
+            <details>
+                <summary>What insights are planned?</summary>
+                <p>Analytics and reporting are in development to surface member activity and trends.</p>
+            </details>
+        </div>
+    </section>
 
-	<section class="contact" id="contact">
-		<h3>Early Access & Contact</h3>
-		<div class="contact-grid">
-			<div class="contact-item">
-				<div class="contact-label">Status</div>
-				<div class="contact-value">Public beta opening soon.</div>
-			</div>
-			<div class="contact-item">
-				<div class="contact-label">Email</div>
-				<div class="contact-value"><a href="mailto:subguardteam@gmail.com" style="color:#fff;text-decoration:none;">subguardteam@gmail.com</a></div>
-			</div>
-			<div class="contact-item">
-				<div class="contact-label">Telegram Bot</div>
-				<div class="contact-value"><a href="https://t.me/subguardbot" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">@subguardbot</a></div>
-			</div>
-		</div>
-	</section>
+    <section class="contact" id="contact">
+        <h3>Contact</h3>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-label">Availability</div>
+                <div class="contact-value">Available now.</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div class="contact-value"><a href="mailto:subguardteam@gmail.com" style="color:#fff;text-decoration:none;">subguardteam@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Telegram Bot</div>
+                <div class="contact-value"><a href="https://t.me/subguardbot" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">@subguardbot</a></div>
+            </div>
+        </div>
+    </section>
 
-	<footer class="footer">
-		<p><strong>SubGuard</strong> — Telegram Subscription Manager</p>
-		<p>Premium • Secure • Easy to use</p>
-		<p style="margin-top:8px;">
-			<a href="./privacy.html" style="color:#aaa; text-decoration:none; margin-right:14px;">Privacy</a>
-			<a href="./terms.html" style="color:#aaa; text-decoration:none;">Terms</a>
-		</p>
-		<p style="margin-top:10px;color:#666;font-size:0.85rem;">© <span id="year"></span> SubGuard. All rights reserved.</p>
-	</footer>
+    <footer class="footer">
+    <p><strong>SubGuard</strong> — Team Communication Manager</p>
+        <p>Premium • Secure • Easy to use</p>
+        <p style="margin-top:8px;">
+            <a href="./privacy.html" style="color:#aaa; text-decoration:none; margin-right:14px;">Privacy</a>
+            <a href="./terms.html" style="color:#aaa; text-decoration:none;">Terms</a>
+        </p>
+        <p style="margin-top:10px;color:#666;font-size:0.85rem;">© <span id="year"></span> SubGuard. All rights reserved.</p>
+    </footer>
 
-	<script>
-	  // small nicety: current year in footer
-	  document.getElementById('year').textContent = new Date().getFullYear();
-	</script>
+    <script>
+      // small nicety: current year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
-
