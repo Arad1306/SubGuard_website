@@ -19,12 +19,12 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        :root { --bg:#0a0a0a; --panel:#1a1a1a; --panel-2:#2a2a2a; --blue:#00BFFF; --lightblue:#1E90FF; --text:#fff; --muted:#ccc; }
+        :root { --bg:#ffffff; --panel:#f8f9fa; --panel-2:#e9ecef; --blue:#00BFFF; --lightblue:#1E90FF; --text:#333; --muted:#666; }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.5;
-            color: #ffffff;
+            color: #333333;
             background: var(--bg);
             font-weight: 400;
             -webkit-font-smoothing: antialiased;
@@ -36,10 +36,11 @@
         .nav {
             position: sticky;
             top: 0;
-            background: rgba(10,10,10,0.85);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(6px);
-            border-bottom: 1px solid #1f1f1f;
+            border-bottom: 1px solid #e9ecef;
             z-index: 10;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         .nav-inner {
             max-width: 1100px;
@@ -63,13 +64,13 @@
             box-shadow: 0 0 12px rgba(0, 191, 255, 0.6);
         }
         .nav-links a {
-            color: #ccc; text-decoration: none; margin-left: 18px; font-weight: 500; font-size: 0.95rem;
+            color: #666; text-decoration: none; margin-left: 18px; font-weight: 500; font-size: 0.95rem;
         }
         .nav-links a:hover { color: #00BFFF; }
         
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 50%, #1a1a1a 100%);
-            color: #ffffff;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+            color: #333333;
             text-align: center;
             padding: 80px 20px 60px;
             min-height: 85vh;
@@ -150,7 +151,7 @@
             font-size: 1.4rem;
             margin-bottom: 35px;
             font-weight: 500;
-            color: #e8e8e8;
+            color: #555555;
             line-height: 1.4;
             letter-spacing: -0.005em;
             max-width: 700px;
@@ -183,13 +184,11 @@
         
     section { scroll-margin-top: 90px; }
 
-    .features {
+        .features {
             padding: 70px 20px;
-            background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
             text-align: center;
-        }
-        
-        .features h3 {
+        }        .features h3 {
             font-size: 2.5rem;
             margin-bottom: 50px;
             background: linear-gradient(135deg, #00BFFF, #1E90FF);
@@ -209,14 +208,15 @@
         }
         
         .feature-box {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
             padding: 35px 30px;
             border-radius: 16px;
-            border: 1px solid #333;
+            border: 1px solid #e9ecef;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             text-align: left;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
         
         .feature-box::before {
@@ -262,7 +262,7 @@
         }
         
         .feature-box p {
-            color: #cccccc;
+            color: #666666;
             font-size: 0.95rem;
             line-height: 1.6;
             font-weight: 400;
@@ -270,7 +270,7 @@
         
         .how-it-works {
             padding: 70px 20px;
-            background: #0a0a0a;
+            background: #ffffff;
             text-align: center;
         }
         
@@ -294,12 +294,13 @@
         }
         
         .step {
-            background: linear-gradient(135deg, #2a2a2a, #1f1f1f);
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
             padding: 35px 30px;
             border-radius: 16px;
-            border: 1px solid #333;
+            border: 1px solid #e9ecef;
             position: relative;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
         
         .step:hover {
@@ -333,7 +334,7 @@
         }
         
         .step p {
-            color: #cccccc;
+            color: #666666;
             font-size: 0.95rem;
             line-height: 1.6;
         }
