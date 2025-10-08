@@ -478,6 +478,7 @@
             .hero-copy { text-align: center; }
             .hero h2 { margin-left: auto; margin-right: auto; }
             .about-inner { grid-template-columns: 1fr; }
+            .contact > div { grid-template-columns: 1fr !important; gap: 30px !important; }
         }
     </style>
 </head>
@@ -489,8 +490,7 @@
                     <a href="#features">Features</a>
                     <a href="#how-it-works">How it works</a>
                     <a href="#about">About</a>
-                    <a href="#faq">FAQ</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#faq">FAQ & Contact</a>
                 </nav>
             </div>
         </header>
@@ -577,7 +577,7 @@
             </div>
             <div class="about-card">
                 <strong style="color:#00BFFF;">Who uses SubGuard?</strong>
-                <ul style="margin-top:10px; padding-left:18px; color:#cfcfcf; line-height:1.7;">
+                <ul style="margin-top:10px; padding-left:18px; color:#333; line-height:1.7;">
                     <li>Corporate teams</li>
                     <li>Educational programs</li>
                     <li>Professional communities</li>
@@ -614,42 +614,43 @@
         </div>
     </section>
 
-    <section class="faq" id="faq" aria-label="Frequently asked questions">
-        <div class="faq-inner">
-            <h3>FAQ</h3>
-            <details>
-                <summary>What platforms do you support?</summary>
-                <p>SubGuard is built for private Telegram groups and channels.</p>
-            </details>
-            <details>
-                <summary>How are members added?</summary>
-                <p>Share a secure one‑time invite link. SubGuard verifies joins and tracks access windows.</p>
-            </details>
-            <details>
-                <summary>Can multiple admins manage the same group?</summary>
-                <p>Yes. Use role‑based permissions to collaborate safely with your team.</p>
-            </details>
-            <details>
-                <summary>What insights are planned?</summary>
-                <p>Analytics and reporting are in development to surface member activity and trends.</p>
-            </details>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <h3>Contact</h3>
-        <div class="contact-grid">
-            <div class="contact-item">
-                <div class="contact-label">Availability</div>
-                <div class="contact-value">Available now.</div>
+    <section class="contact" id="faq" aria-label="Frequently asked questions and contact">
+        <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+            <div class="faq-inner">
+                <h3 style="font-size: 2.2rem; margin-bottom: 24px; background: linear-gradient(135deg, #00BFFF, #1E90FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; text-align:center;">FAQ</h3>
+                <details style="background: linear-gradient(135deg, #fff, #f8f9fa); border:1px solid #e9ecef; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <summary style="list-style: none; cursor: pointer; color:#333; font-weight: 600;">What platforms do you support?</summary>
+                    <p style="color:#333; margin-top:10px;">SubGuard is built for private Telegram groups and channels.</p>
+                </details>
+                <details style="background: linear-gradient(135deg, #fff, #f8f9fa); border:1px solid #e9ecef; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <summary style="list-style: none; cursor: pointer; color:#333; font-weight: 600;">How are members added?</summary>
+                    <p style="color:#333; margin-top:10px;">Share a secure one‑time invite link. SubGuard verifies joins and tracks access windows.</p>
+                </details>
+                <details style="background: linear-gradient(135deg, #fff, #f8f9fa); border:1px solid #e9ecef; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <summary style="list-style: none; cursor: pointer; color:#333; font-weight: 600;">Can multiple admins manage the same group?</summary>
+                    <p style="color:#333; margin-top:10px;">Yes. Use role‑based permissions to collaborate safely with your team.</p>
+                </details>
+                <details style="background: linear-gradient(135deg, #fff, #f8f9fa); border:1px solid #e9ecef; border-radius:12px; padding: 16px 18px; margin: 12px 0; transition: border-color .2s ease; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <summary style="list-style: none; cursor: pointer; color:#333; font-weight: 600;">What insights are planned?</summary>
+                    <p style="color:#333; margin-top:10px;">Analytics and reporting are in development to surface member activity and trends.</p>
+                </details>
             </div>
-            <div class="contact-item">
-                <div class="contact-label">Email</div>
-                <div class="contact-value"><a href="mailto:subguardteam@gmail.com" style="color:#333;text-decoration:none;">subguardteam@gmail.com</a></div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-label">Telegram Bot</div>
-                <div class="contact-value"><a href="https://t.me/subguardbot" target="_blank" rel="noopener" style="color:#333;text-decoration:none;">@subguardbot</a></div>
+            <div>
+                <h3 style="font-size: 2.2rem; margin-bottom: 40px; background: linear-gradient(135deg, #00BFFF, #1E90FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; text-align:center;">Contact</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-label">Availability</div>
+                        <div class="contact-value">Available now.</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value"><a href="mailto:subguardteam@gmail.com" style="color:#333;text-decoration:none;">subguardteam@gmail.com</a></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-label">Telegram Bot</div>
+                        <div class="contact-value"><a href="https://t.me/subguardbot" target="_blank" rel="noopener" style="color:#333;text-decoration:none;">@subguardbot</a></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
